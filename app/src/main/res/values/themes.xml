@@ -1,6 +1,6 @@
-
 <resources>
-    <style name="Theme.Recipes" parent="Theme.Material3.Light.NoActionBar">
+
+    <style xmlns:tools="http://schemas.android.com/tools" name="Theme.Recipes" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
@@ -32,5 +32,7 @@
         <item name="colorOnCustomColor1Container">#161f00</item>
         <item name="harmonizeCustomColor1">false</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
+        <item name="android:statusBarColor">@color/md_theme_light_surface</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
     </style>
 </resources>

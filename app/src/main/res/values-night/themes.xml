@@ -1,6 +1,6 @@
-
 <resources>
-    <style name="Theme.Recipes" parent="Theme.Material3.Dark.NoActionBar">
+
+    <style xmlns:tools="http://schemas.android.com/tools" name="Theme.Recipes" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>
@@ -32,5 +32,7 @@
         <item name="colorOnCustomColor1Container">#d1ee81</item>
         <item name="harmonizeCustomColor1">false</item>
         <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
+        <item name="android:statusBarColor">@color/md_theme_dark_surface</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
     </style>
 </resources>
