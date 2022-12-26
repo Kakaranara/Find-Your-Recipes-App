@@ -1,4 +1,4 @@
-package com.example.recipes
+package com.example.recipes.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.recipes.R
 import com.example.recipes.databinding.FragmentHomeBinding
 import com.example.recipes.helper.showToast
 
@@ -18,10 +20,17 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         configDrawer()
 
-        showToast("Horray!")
+        val mAdapter = RecipeListAdapter()
+        val grid = GridLayoutManager(requireActivity(), 2)
+
+
+
+        binding.rvListRecipe.apply {
+            adapter = mAdapter
+            layoutManager = grid
+        }
     }
 
     private fun configDrawer() {
