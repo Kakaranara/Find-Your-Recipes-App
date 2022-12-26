@@ -27,5 +27,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:layout_constraintVertical_bias="0.5"
-        tools:listitem="@layout/item_list_recipe" />
+        tools:itemCount="10"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/item_list_recipe"
+        tools:spanCount="2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
