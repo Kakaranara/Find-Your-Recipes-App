@@ -2,7 +2,7 @@ package com.wahyu.recipes.core.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class RecipeList(
+data class RecipeApiResponse(
     @field:SerializedName("id")
     val id: Int,
 

@@ -2,9 +2,9 @@ package com.wahyu.recipes.core.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class RecipeResponse(
+data class SearchRecipeResponse(
     @field:SerializedName("results")
-    val recipeList: List<RecipeList>,
+    val result: List<RecipeApiResponse>,
 
     @field:SerializedName("offset")
     val offset: Int,
