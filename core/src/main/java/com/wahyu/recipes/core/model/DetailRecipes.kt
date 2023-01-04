@@ -1,5 +1,10 @@
 package com.wahyu.recipes.core.model
 
-class DetailRecipes {
-
-}
+data class DetailRecipes(
+    val id: Int,
+    val title: String,
+    val readyInMinutes: Int,
+    val image: String,
+    val summary: String,
+    val instruction: String,
+)
