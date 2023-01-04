@@ -1,4 +1,4 @@
-package com.wahyu.recipes.core.data.remote.retrofit
+package com.wahyu.recipes.core.data.remote.network
 
 import com.wahyu.recipes.core.BuildConfig
 import okhttp3.OkHttpClient
@@ -6,6 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+//! remove later
 object ApiConfig {
     const val baseUrl = "https://api.spoonacular.com/recipes/"
     const val token = "01db06631f77485381b23eec0e1d29f7"
