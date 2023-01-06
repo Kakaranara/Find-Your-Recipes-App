@@ -1,7 +1,7 @@
 package com.wahyu.recipes.core.data.remote
 
 import android.util.Log
-import com.wahyu.recipes.core.data.remote.response.ApiResponse
+import com.wahyu.recipes.core.data.remote.network.ApiResponse
 import com.wahyu.recipes.core.data.remote.response.SearchRecipeResponse
 import com.wahyu.recipes.core.data.remote.network.ApiService
 import com.wahyu.recipes.core.data.remote.response.RecipeInformationResponse

@@ -5,14 +5,19 @@ import kotlinx.coroutines.runBlocking
 
 fun main() {
     runBlocking {
-        val mapped = collectMe().map { it.toInt() }
-        mapped.collect{
-            println("$it : ${it::class.java.simpleName}")
+        val personList = listOf<Person>(Person("yoy"), Person("yay"))
+        val peopleList = personList.map {
+            println("Yok")
+            People(it.name)
         }
+        println(peopleList)
     }
 }
 
-fun collectMe() : Flow<String> = flow {
+data class Person(val name: String)
+data class People(val name: String)
+
+fun collectMe(): Flow<String> = flow {
     emit("1")
     emit("3")
     emit("2")

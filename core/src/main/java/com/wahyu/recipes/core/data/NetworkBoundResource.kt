@@ -1,6 +1,6 @@
 package com.wahyu.recipes.core.data
 
-import com.wahyu.recipes.core.data.remote.response.ApiResponse
+import com.wahyu.recipes.core.data.remote.network.ApiResponse
 import kotlinx.coroutines.flow.*
 
 abstract class NetworkBoundResource<ResultType, RequestType> {
