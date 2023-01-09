@@ -8,5 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface IRecipesRepository {
     fun getRecipes(): Flow<Async<List<Recipes>>>
     fun getRecipesInformation(id: Int): Flow<Async<DetailRecipes>>
-    fun setFavoriteRecipes(recipes: DetailRecipes, state: Boolean)
+    fun setFavoriteRecipes(recipes: Recipes, detail: DetailRecipes, state: Boolean)
+    fun getFavoriteRecipes(): Flow<Async<Recipes>>
+    fun getFavoriteDetailRecipes(): Flow<Async<DetailRecipes>>
 }

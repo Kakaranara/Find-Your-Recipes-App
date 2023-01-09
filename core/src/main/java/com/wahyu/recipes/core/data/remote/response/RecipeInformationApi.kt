@@ -2,7 +2,7 @@ package com.wahyu.recipes.core.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class RecipeInformationResponse(
+data class RecipeInformationApi(
 
 	@field:SerializedName("instructions")
 	val instructions: String? = null,

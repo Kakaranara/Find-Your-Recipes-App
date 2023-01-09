@@ -1,7 +1,7 @@
 package com.wahyu.recipes.core.data.remote.network
 
-import com.wahyu.recipes.core.data.remote.response.RecipeInformationResponse
-import com.wahyu.recipes.core.data.remote.response.SearchRecipeResponse
+import com.wahyu.recipes.core.data.remote.response.RecipeInformationApi
+import com.wahyu.recipes.core.data.remote.response.SearchRecipeApi
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -13,11 +13,11 @@ interface ApiService {
         @Query("apiKey") key: String,
         @Query("number") size: Int? = null,
         @Query("type") type: String? = null,
-    ): Response<SearchRecipeResponse>
+    ): Response<SearchRecipeApi>
 
     @GET("{id}/information")
     suspend fun getRecipeInformation(
         @Query("apiKey") key: String,
         @Path("id") id: Int,
-    ): Response<RecipeInformationResponse>
+    ): Response<RecipeInformationApi>
 }

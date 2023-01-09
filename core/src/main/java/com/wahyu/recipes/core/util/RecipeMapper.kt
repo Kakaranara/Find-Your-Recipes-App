@@ -1,13 +1,11 @@
 package com.wahyu.recipes.core.util
 
-import androidx.room.Entity
 import com.wahyu.recipes.core.data.local.entity.RecipeEntity
-import com.wahyu.recipes.core.data.remote.response.RecipeApiResponse
-import com.wahyu.recipes.core.data.remote.response.SearchRecipeResponse
+import com.wahyu.recipes.core.data.remote.response.RecipeApi
 import com.wahyu.recipes.core.model.Recipes
 
 object RecipeMapper {
-    fun responseToEntities(data: List<RecipeApiResponse>): List<RecipeEntity> {
+    fun responseToEntities(data: List<RecipeApi>): List<RecipeEntity> {
         return data.map {
             RecipeEntity(
                 id = it.id,
