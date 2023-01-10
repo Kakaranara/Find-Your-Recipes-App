@@ -2,8 +2,7 @@ package com.wahyu.recipes.core.domain.recipes.usecase
 
 import com.wahyu.recipes.core.data.Async
 import com.wahyu.recipes.core.domain.recipes.repository.IRecipesRepository
-import com.wahyu.recipes.core.domain.recipes.usecase.IRecipesUseCase
-import com.wahyu.recipes.core.model.DetailRecipes
+import com.wahyu.recipes.core.model.RecipeInformation
 import com.wahyu.recipes.core.model.Recipes
 import kotlinx.coroutines.flow.Flow
 
@@ -12,11 +11,11 @@ class RecipesInteractor(private val repository: IRecipesRepository) : IRecipesUs
         TODO("Not yet implemented")
     }
 
-    override fun getRecipesInformation(id: Int): Flow<Async<DetailRecipes>> {
+    override fun getRecipesInformation(id: Int): Flow<Async<RecipeInformation>> {
         TODO("Not yet implemented")
     }
 
-    override fun setFavoriteRecipes(recipes: DetailRecipes, state: Boolean) {
+    override fun setFavoriteRecipes(recipes: RecipeInformation, state: Boolean) {
         TODO("Not yet implemented")
     }
 }

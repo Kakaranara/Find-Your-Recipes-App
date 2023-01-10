@@ -4,11 +4,11 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.wahyu.recipes.core.data.local.entity.FavoriteEntity
 import com.wahyu.recipes.core.data.local.entity.RecipeInformationEntity
-import com.wahyu.recipes.core.data.local.entity.RecipeEntity
+import com.wahyu.recipes.core.data.local.entity.RecipesEntity
 
 @Database(
     entities = [
-        RecipeEntity::class,
+        RecipesEntity::class,
         RecipeInformationEntity::class,
         FavoriteEntity::class
     ],

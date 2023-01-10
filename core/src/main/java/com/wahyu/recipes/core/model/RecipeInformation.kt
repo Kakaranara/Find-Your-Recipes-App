@@ -1,6 +1,6 @@
 package com.wahyu.recipes.core.model
 
-data class DetailRecipes(
+data class RecipeInformation(
     val id: Int,
     val title: String,
     val readyInMinutes: Int,

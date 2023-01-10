@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SearchRecipeApi(
     @field:SerializedName("results")
-    val result: List<RecipeApi>,
+    val result: List<RecipesApi>,
 
     @field:SerializedName("offset")
     val offset: Int,
@@ -17,7 +17,7 @@ data class SearchRecipeApi(
 )
 
 
-data class RecipeApi(
+data class RecipesApi(
     @field:SerializedName("id")
     val id: Int,
 
