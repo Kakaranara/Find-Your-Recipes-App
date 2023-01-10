@@ -5,17 +5,19 @@ import com.wahyu.recipes.core.data.remote.network.ApiResponse
 import com.wahyu.recipes.core.data.remote.response.SearchRecipeApi
 import com.wahyu.recipes.core.data.remote.network.ApiService
 import com.wahyu.recipes.core.data.remote.response.RecipeInformationApi
+import com.wahyu.recipes.core.data.remote.response.RecipesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class RemoteDataSource(private val apiService: ApiService) {
     private val token = "01db06631f77485381b23eec0e1d29f7"
-    suspend fun getRecipe(type: String, size: Int): Flow<ApiResponse<SearchRecipeApi>> = flow {
+    suspend fun getRecipe(type: String? = null, size: Int? = null): Flow<ApiResponse<List<RecipesApi>>> = flow {
         try {
             val client = apiService.getRecipe(token, size, type)
             if (client.isSuccessful) {
                 val body = client.body() as SearchRecipeApi
-                emit(ApiResponse.Success(body))
+                val data = body.result
+                emit(ApiResponse.Success(data))
             } else {
                 val error = client.errorBody()
                 emit(ApiResponse.Error(error.toString()))

@@ -8,7 +8,9 @@ import com.wahyu.recipes.core.data.remote.response.RecipeInformationApi
 import com.wahyu.recipes.core.domain.recipes.repository.IRecipesRepository
 import com.wahyu.recipes.core.model.RecipeInformation
 import com.wahyu.recipes.core.model.Recipes
+import com.wahyu.recipes.core.util.mapper.RecipeMapper
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class RecipesRepository(
     private val localDataSource: LocalDataSource,
@@ -17,19 +19,19 @@ class RecipesRepository(
     override fun getRecipes(): Flow<Async<List<Recipes>>> =
         object : NetworkBoundResource<List<Recipes>, List<RecipesApi>>() {
             override fun loadFromDb(): Flow<List<Recipes>> {
-                TODO("Not yet implemented")
+                return localDataSource.getRecipes().map {
+                    RecipeMapper.mapEntityToDomain(it)
+                }
             }
 
-            override fun shouldFetch(data: List<Recipes>?): Boolean {
-                TODO("Not yet implemented")
-            }
+            override fun shouldFetch(data: List<Recipes>?): Boolean = true
 
             override suspend fun createCall(): Flow<ApiResponse<List<RecipesApi>>> {
-                TODO("Not yet implemented")
+                return remoteDataSource.getRecipe()
             }
 
             override suspend fun saveCallResult(data: List<RecipesApi>) {
-                TODO("Not yet implemented")
+                
             }
         }.asFlow()
 
