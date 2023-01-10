@@ -1,7 +1,8 @@
-package com.wahyu.recipes.core.domain
+package com.wahyu.recipes.core.domain.recipes.usecase
 
 import com.wahyu.recipes.core.data.Async
-import com.wahyu.recipes.core.domain.repository.IRecipesRepository
+import com.wahyu.recipes.core.domain.recipes.repository.IRecipesRepository
+import com.wahyu.recipes.core.domain.recipes.usecase.IRecipesUseCase
 import com.wahyu.recipes.core.model.DetailRecipes
 import com.wahyu.recipes.core.model.Recipes
 import kotlinx.coroutines.flow.Flow

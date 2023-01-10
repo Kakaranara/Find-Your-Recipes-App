@@ -4,7 +4,7 @@ import com.wahyu.recipes.core.data.local.LocalDataSource
 import com.wahyu.recipes.core.data.remote.RemoteDataSource
 import com.wahyu.recipes.core.data.remote.network.ApiResponse
 import com.wahyu.recipes.core.data.remote.response.RecipeApi
-import com.wahyu.recipes.core.domain.repository.IRecipesRepository
+import com.wahyu.recipes.core.domain.recipes.repository.IRecipesRepository
 import com.wahyu.recipes.core.model.DetailRecipes
 import com.wahyu.recipes.core.model.Recipes
 import kotlinx.coroutines.flow.Flow

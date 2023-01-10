@@ -1,4 +1,4 @@
-package com.wahyu.recipes.core.domain.repository
+package com.wahyu.recipes.core.domain.recipes.repository
 
 import com.wahyu.recipes.core.data.Async
 import com.wahyu.recipes.core.model.DetailRecipes
