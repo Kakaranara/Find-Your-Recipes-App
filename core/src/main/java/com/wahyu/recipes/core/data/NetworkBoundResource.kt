@@ -18,7 +18,8 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                 }
                 is ApiResponse.Error -> {
                     onFetchFailed()
-                    emit(Async.Error(client.message))
+                    val data = loadFromDb().first()
+                    emit(Async.Error(client.message, data))
                 }
             }
         } else {

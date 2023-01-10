@@ -9,6 +9,8 @@ import com.wahyu.recipes.core.domain.recipes.repository.IRecipesRepository
 import com.wahyu.recipes.core.model.RecipeInformation
 import com.wahyu.recipes.core.model.Recipes
 import com.wahyu.recipes.core.util.mapper.RecipeMapper
+import com.wahyu.recipes.core.util.mapper.toDomain
+import com.wahyu.recipes.core.util.mapper.toEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -24,33 +26,37 @@ class RecipesRepository(
                 }
             }
 
-            override fun shouldFetch(data: List<Recipes>?): Boolean = true
+            override fun shouldFetch(data: List<Recipes>?): Boolean {
+                return true
+            }
 
             override suspend fun createCall(): Flow<ApiResponse<List<RecipesApi>>> {
                 return remoteDataSource.getRecipe()
             }
 
             override suspend fun saveCallResult(data: List<RecipesApi>) {
-                
+                val entity = RecipeMapper.mapApiToEntity(data)
+                localDataSource.saveRecipes(entity)
             }
         }.asFlow()
 
     override fun getRecipesInformation(id: Int): Flow<Async<RecipeInformation>> =
         object : NetworkBoundResource<RecipeInformation, RecipeInformationApi>() {
             override fun loadFromDb(): Flow<RecipeInformation> {
-                TODO("Not yet implemented")
+                return localDataSource.getRecipesInformation(id).map { it.toDomain() }
             }
 
             override fun shouldFetch(data: RecipeInformation?): Boolean {
-                TODO("Not yet implemented")
+                return true
             }
 
             override suspend fun createCall(): Flow<ApiResponse<RecipeInformationApi>> {
-                TODO("Not yet implemented")
+                return remoteDataSource.getRecipeInformation(id)
             }
 
             override suspend fun saveCallResult(data: RecipeInformationApi) {
-                TODO("Not yet implemented")
+                val entity = data.toEntity()
+                localDataSource.saveRecipesInformation(entity)
             }
         }.asFlow()
 
