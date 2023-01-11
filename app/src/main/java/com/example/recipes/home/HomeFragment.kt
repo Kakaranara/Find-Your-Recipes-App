@@ -50,15 +50,13 @@ class HomeFragment : Fragment() {
                     is Async.Error -> {
                         Log.e(TAG, "onViewCreated: NETWORK? ${it.errorMessage}")
                         Log.w(TAG, "onViewCreated: offline data : ${it.data}")
+                        mAdapter.submitList(it.data)
                     }
                     is Async.Loading -> {
 
                     }
                     is Async.Success -> {
                         println(it.data)
-                        for (d in it.data ?: listOf()) {
-                            println("d is $d")
-                        }
                         mAdapter.submitList(it.data)
                     }
                 }
