@@ -1,6 +1,7 @@
 package com.example.recipes.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,15 +27,20 @@ class HomeFragment : Fragment() {
 
     private val viewModel by viewModels<HomeViewModel>()
 
+    companion object{
+        private const val TAG = "HomeFragment"
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configDrawer()
-
         lifecycleScope.launch {
+
             viewModel.useCase.getRecipes().collect {
                 when (it) {
                     is Async.Error -> {
-
+                        Log.e(TAG, "onViewCreated: NETWORK? ${it.errorMessage}", )
+                        Log.w(TAG, "onViewCreated: offline data : ${it.data}", )
                     }
                     is Async.Loading -> {
 

@@ -6,8 +6,11 @@ import com.wahyu.recipes.core.data.remote.response.SearchRecipeApi
 import com.wahyu.recipes.core.data.remote.network.ApiService
 import com.wahyu.recipes.core.data.remote.response.RecipeInformationApi
 import com.wahyu.recipes.core.data.remote.response.RecipesApi
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -35,7 +38,7 @@ class RemoteDataSource @Inject constructor(
             emit(ApiResponse.Error(e.message.toString()))
             Log.e(TAG, "getRecipe: Unexpected Error = $e")
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
     suspend fun getRecipeInformation(id: Int): Flow<ApiResponse<RecipeInformationApi>> = flow {
         try {
@@ -52,7 +55,7 @@ class RemoteDataSource @Inject constructor(
             emit(ApiResponse.Error(e.message.toString()))
             Log.e(TAG, "getRecipe: Unexpected Error = $e")
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
     companion object {
         private const val TAG = "RemoteDataSource"
