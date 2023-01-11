@@ -23,7 +23,7 @@ class NetworkModule {
             .build()
     }
 
-
+    @Provides
     fun provideApiService(client: OkHttpClient): ApiService {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())

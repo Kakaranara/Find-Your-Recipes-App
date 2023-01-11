@@ -5,17 +5,20 @@ import com.wahyu.recipes.core.domain.recipes.repository.IRecipesRepository
 import com.wahyu.recipes.core.model.RecipeInformation
 import com.wahyu.recipes.core.model.Recipes
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RecipesInteractor(private val repository: IRecipesRepository) : IRecipesUseCase {
+class RecipesInteractor @Inject constructor(private val repository: IRecipesRepository) :
+    IRecipesUseCase {
     override fun getRecipes(): Flow<Async<List<Recipes>>> {
-        TODO("Not yet implemented")
+        return repository.getRecipes()
     }
 
     override fun getRecipesInformation(id: Int): Flow<Async<RecipeInformation>> {
-        TODO("Not yet implemented")
+        return repository.getRecipesInformation(id)
     }
 
     override fun setFavoriteRecipes(recipes: RecipeInformation, state: Boolean) {
-        TODO("Not yet implemented")
+        //
     }
 }
