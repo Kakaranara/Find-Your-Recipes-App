@@ -7,4 +7,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(val useCase: IRecipesUseCase) : ViewModel() {
+    fun getRecipeList() = useCase.getRecipes()
 }
