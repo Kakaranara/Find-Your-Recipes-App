@@ -11,6 +11,12 @@ import com.wahyu.recipes.core.model.Recipes
 
 class RecipeListAdapter : ListAdapter<Recipes, RecipeListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
+    private var clickListener: OnItemClickListener? = null
+
+    fun setClickListener(clickListener: OnItemClickListener) {
+        this.clickListener = clickListener
+    }
+
     inner class ViewHolder(private val binding: ItemListRecipeBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(recipes: Recipes) {
@@ -18,7 +24,14 @@ class RecipeListAdapter : ListAdapter<Recipes, RecipeListAdapter.ViewHolder>(DIF
             Glide.with(binding.root.context)
                 .load(recipes.image)
                 .into(binding.imgRecipe)
+            binding.view.setOnClickListener {
+                clickListener?.onDetailClick(recipes)
+            }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onDetailClick(recipes: Recipes)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

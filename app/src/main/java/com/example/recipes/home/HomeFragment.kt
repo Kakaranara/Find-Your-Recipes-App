@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,7 +16,9 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.recipes.R
 import com.example.recipes.databinding.FragmentHomeBinding
+import com.example.recipes.detail.RecipeInformationFragment
 import com.wahyu.recipes.core.data.Async
+import com.wahyu.recipes.core.model.Recipes
 import com.wahyu.recipes.core.ui.RecipeListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -42,6 +45,13 @@ class HomeFragment : Fragment() {
             adapter = mAdapter
             layoutManager = grid
         }
+
+        mAdapter.setClickListener(object : RecipeListAdapter.OnItemClickListener {
+            override fun onDetailClick(recipes: Recipes) {
+                val go = HomeFragmentDirections.actionHomeFragmentToRecipeInformationFragment()
+                findNavController().navigate(go)
+            }
+        })
 
         lifecycleScope.launch {
 
