@@ -13,8 +13,9 @@ import com.wahyu.recipes.core.util.mapper.toDomain
 import com.wahyu.recipes.core.util.mapper.toEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class RecipesRepository(
+class RecipesRepository @Inject constructor(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource,
 ) : IRecipesRepository {

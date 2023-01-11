@@ -5,8 +5,11 @@ import com.wahyu.recipes.core.data.local.entity.FavoriteEntity
 import com.wahyu.recipes.core.data.local.entity.RecipeInformationEntity
 import com.wahyu.recipes.core.data.local.entity.RecipesEntity
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LocalDataSource(
+@Singleton
+class LocalDataSource @Inject constructor(
     private val dao: RecipesDao,
 ) {
     fun getRecipes(): Flow<List<RecipesEntity>> = dao.getRecipes()

@@ -8,10 +8,18 @@ import com.wahyu.recipes.core.data.remote.response.RecipeInformationApi
 import com.wahyu.recipes.core.data.remote.response.RecipesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RemoteDataSource(private val apiService: ApiService) {
+@Singleton
+class RemoteDataSource @Inject constructor(
+    private val apiService: ApiService,
+) {
     private val token = "01db06631f77485381b23eec0e1d29f7"
-    suspend fun getRecipe(type: String? = null, size: Int? = null): Flow<ApiResponse<List<RecipesApi>>> = flow {
+    suspend fun getRecipe(
+        type: String? = null,
+        size: Int? = null,
+    ): Flow<ApiResponse<List<RecipesApi>>> = flow {
         try {
             val client = apiService.getRecipe(token, size, type)
             if (client.isSuccessful) {
