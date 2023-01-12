@@ -1,4 +1,4 @@
-package com.example.recipes.home
+package com.example.recipes.ui.home
 
 import androidx.lifecycle.ViewModel
 import com.wahyu.recipes.core.domain.recipes.usecase.IRecipesUseCase

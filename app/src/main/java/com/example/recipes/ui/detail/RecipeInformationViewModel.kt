@@ -1,4 +1,4 @@
-package com.example.recipes.detail
+package com.example.recipes.ui.detail
 
 import androidx.lifecycle.ViewModel
 import com.wahyu.recipes.core.data.Async
