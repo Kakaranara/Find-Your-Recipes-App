@@ -15,8 +15,8 @@ interface RecipesDao {
     @Query("SELECT * FROM recipes")
     fun getRecipes(): Flow<List<RecipesEntity>>
 
-    @Query("SELECT * FROM detail where id = :recipesId")
-    fun getRecipeInformation(recipesId: Int): Flow<RecipeInformationEntity>
+    @Query("SELECT * FROM detail where id = :recipesId LIMIT 1")
+    fun getRecipeInformation(recipesId: Int): Flow<RecipeInformationEntity?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveRecipes(recipeEntity: List<RecipesEntity>)

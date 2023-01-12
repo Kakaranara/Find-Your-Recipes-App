@@ -17,7 +17,7 @@ interface ApiService {
 
     @GET("{id}/information")
     suspend fun getRecipeInformation(
-        @Query("apiKey") key: String,
         @Path("id") id: Int,
+        @Query("apiKey") key: String,
     ): Response<RecipeInformationApi>
 }

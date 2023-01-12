@@ -40,9 +40,9 @@ class RemoteDataSource @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    suspend fun getRecipeInformation(id: Int): Flow<ApiResponse<RecipeInformationApi>> = flow {
+    suspend fun getRecipeInformation(id: Int): Flow<ApiResponse<RecipeInformationApi>> =        flow {
         try {
-            val client = apiService.getRecipeInformation(token, id)
+            val client = apiService.getRecipeInformation(id, token)
             if (client.isSuccessful) {
                 val body = client.body() as RecipeInformationApi
                 emit(ApiResponse.Success(body))

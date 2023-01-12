@@ -13,7 +13,7 @@ class LocalDataSource @Inject constructor(
     private val dao: RecipesDao,
 ) {
     fun getRecipes(): Flow<List<RecipesEntity>> = dao.getRecipes()
-    fun getRecipesInformation(id: Int): Flow<RecipeInformationEntity> = dao.getRecipeInformation(id)
+    fun getRecipesInformation(id: Int): Flow<RecipeInformationEntity?> = dao.getRecipeInformation(id)
     suspend fun saveRecipes(recipeList: List<RecipesEntity>) = dao.saveRecipes(recipeList)
     suspend fun saveRecipesInformation(recipe: RecipeInformationEntity) =
         dao.saveRecipeInformation(recipe)

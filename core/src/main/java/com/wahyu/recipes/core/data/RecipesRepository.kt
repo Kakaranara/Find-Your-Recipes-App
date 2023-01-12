@@ -44,7 +44,9 @@ class RecipesRepository @Inject constructor(
     override fun getRecipesInformation(id: Int): Flow<Async<RecipeInformation>> =
         object : NetworkBoundResource<RecipeInformation, RecipeInformationApi>() {
             override fun loadFromDb(): Flow<RecipeInformation> {
-                return localDataSource.getRecipesInformation(id).map { it.toDomain() }
+                return localDataSource.getRecipesInformation(id).map {
+                    it?.toDomain() ?: RecipeInformation(0, "", 0, "", "", "")
+                }
             }
 
             override fun shouldFetch(data: RecipeInformation?): Boolean {
