@@ -9,24 +9,25 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/detailToolbar"
         android:layout_width="0dp"
-        app:menu="@menu/menu_detail"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_detail" />
+
 
     <ImageView
         android:id="@+id/detailImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/image_of_recipes"
         android:scaleType="fitXY"
-        tools:src="@drawable/spoonacular_image"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailToolbar"
-        android:contentDescription="@string/image_of_recipes" />
+        app:layout_constraintTop_toBottomOf="@id/detailToolbar"
+        app:layout_constraintBottom_toTopOf="@id/guideline2"
+        tools:src="@drawable/spoonacular_image" />
 
     <ProgressBar
         android:id="@+id/progressBar2"
@@ -39,14 +40,66 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        tools:visibility="visible" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="431dp" />
+        app:layout_constraintGuide_end="486dp" />
+
+    <TextView
+        android:id="@+id/tvDetailTitle"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailImage"
+        tools:text="Spoonacular API is the best" />
+
+    <TextView
+        android:id="@+id/tvDetailSummary"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailTitle"
+        tools:text="Just a description body" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="How to make it"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailSummary" />
+
+    <TextView
+        android:id="@+id/tvDetailInstruction"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:text="One you should what then i should what too." />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

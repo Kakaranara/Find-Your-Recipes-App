@@ -1,6 +1,8 @@
 package com.example.recipes.ui.detail
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +15,11 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.example.recipes.databinding.FragmentRecipeInformationBinding
+import com.example.recipes.helper.HtmlParser
 import com.example.recipes.helper.gone
 import com.example.recipes.helper.visible
 import com.wahyu.recipes.core.data.Async
+import com.wahyu.recipes.core.model.RecipeInformation
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -42,30 +46,39 @@ class RecipeInformationFragment : Fragment() {
 
         binding.detailToolbar.setupWithNavController(findNavController())
 
-
         lifecycleScope.launch {
             viewModel.getRecipeInformation(id).collect { information ->
                 when (information) {
                     is Async.Error -> {
                         binding.progressBar2.gone()
-                        Glide.with(view)
-                            .load(information.data?.image)
-                            .into(binding.detailImage)
+                        setupDataIfAvalaible(information.data as RecipeInformation)
                     }
                     is Async.Loading -> {
                         binding.progressBar2.visible()
                     }
                     is Async.Success -> {
                         binding.progressBar2.gone()
-                        Glide.with(view)
-                            .load(information.data?.image)
-                            .into(binding.detailImage)
+                        setupDataIfAvalaible(information.data as RecipeInformation)
                     }
                 }
             }
         }
+    }
 
-        Toast.makeText(requireActivity(), "id: $id", Toast.LENGTH_SHORT).show()
+    private fun setupDataIfAvalaible(information: RecipeInformation) {
+
+        val summary = HtmlParser.parseHtml(information.summary)
+        val instruction = HtmlParser.parseHtml(information.instruction)
+
+        binding.apply {
+            tvDetailTitle.text = information.title
+            tvDetailSummary.text = summary
+            tvDetailInstruction.text = instruction
+
+            Glide.with(requireView())
+                .load(information.image)
+                .into(detailImage)
+        }
     }
 
     override fun onDestroyView() {
