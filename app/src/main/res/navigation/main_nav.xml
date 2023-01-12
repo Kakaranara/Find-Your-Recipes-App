@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/recipeInformationFragment"
         android:name="com.example.recipes.detail.RecipeInformationFragment"
-        android:label="fragment_recipe_information"
+        android:label="information"
         tools:layout="@layout/fragment_recipe_information" >
         <argument
             android:name="id"

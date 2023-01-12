@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.example.recipes.R
 import com.example.recipes.databinding.FragmentRecipeInformationBinding
@@ -39,6 +41,9 @@ class RecipeInformationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = args.id
+
+        binding.detailToolbar.setupWithNavController(findNavController())
+
 
         lifecycleScope.launch {
             viewModel.getRecipeInformation(id).collect { information ->
