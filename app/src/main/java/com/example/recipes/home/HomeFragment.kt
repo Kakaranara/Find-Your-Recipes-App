@@ -15,6 +15,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.recipes.R
 import com.example.recipes.databinding.FragmentHomeBinding
+import com.example.recipes.helper.gone
+import com.example.recipes.helper.visible
 import com.wahyu.recipes.core.data.Async
 import com.wahyu.recipes.core.model.Recipes
 import com.wahyu.recipes.core.ui.RecipeListAdapter
@@ -46,7 +48,8 @@ class HomeFragment : Fragment() {
 
         mAdapter.setClickListener(object : RecipeListAdapter.OnItemClickListener {
             override fun onDetailClick(recipes: Recipes) {
-                val go = HomeFragmentDirections.actionHomeFragmentToRecipeInformationFragment(recipes.id)
+                val go =
+                    HomeFragmentDirections.actionHomeFragmentToRecipeInformationFragment(recipes.id)
                 findNavController().navigate(go)
             }
         })
@@ -56,23 +59,22 @@ class HomeFragment : Fragment() {
             viewModel.useCase.getRecipes().collect {
                 when (it) {
                     is Async.Error -> {
-                        Log.e(TAG, "onViewCreated: NETWORK? ${it.errorMessage}")
-                        Log.w(TAG, "onViewCreated: offline data : ${it.data}")
+                        binding.progressBar.gone()
                         mAdapter.submitList(it.data)
+                        Log.w(TAG, "onViewCreated: offline data : ${it.data}")
                     }
                     is Async.Loading -> {
-
+                        binding.progressBar.visible()
                     }
                     is Async.Success -> {
-                        println(it.data)
+                        binding.progressBar.gone()
                         mAdapter.submitList(it.data)
                     }
                 }
             }
         }
-
-
     }
+
 
     private fun configDrawer() {
         val navController = findNavController()
