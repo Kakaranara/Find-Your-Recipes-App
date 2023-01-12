@@ -13,9 +13,9 @@ import com.example.recipes.databinding.FragmentRecipeInformationBinding
 
 class RecipeInformationFragment : Fragment() {
     private var _binding: FragmentRecipeInformationBinding? = null
-    private val binding: FragmentRecipeInformationBinding = _binding!!
+    private val binding get() = _binding!!
 
-//    private val args by navArgs<RecipeInformationFragmentArgs>()
+    private val args by navArgs<RecipeInformationFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,9 +28,9 @@ class RecipeInformationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val id = args.id
-//
-//        Toast.makeText(requireActivity(), id, Toast.LENGTH_SHORT).show()
+        val id = args.id
+
+        Toast.makeText(requireActivity(), "id: $id", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
