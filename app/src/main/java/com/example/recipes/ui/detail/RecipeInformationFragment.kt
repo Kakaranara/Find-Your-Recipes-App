@@ -1,12 +1,9 @@
 package com.example.recipes.ui.detail
 
-import android.os.Build
 import android.os.Bundle
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -50,14 +47,14 @@ class RecipeInformationFragment : Fragment() {
             viewModel.getRecipeInformation(id).collect { information ->
                 when (information) {
                     is Async.Error -> {
-                        binding.progressBar2.gone()
+                        binding.content.progressBar2.gone()
                         setupDataIfAvalaible(information.data as RecipeInformation)
                     }
                     is Async.Loading -> {
-                        binding.progressBar2.visible()
+                        binding.content.progressBar2.visible()
                     }
                     is Async.Success -> {
-                        binding.progressBar2.gone()
+                        binding.content.progressBar2.gone()
                         setupDataIfAvalaible(information.data as RecipeInformation)
                     }
                 }
@@ -70,12 +67,12 @@ class RecipeInformationFragment : Fragment() {
         val summary = HtmlParser.parseHtml(information.summary)
         val instruction = HtmlParser.parseHtml(information.instruction)
 
-        binding.apply {
+        binding.content.apply {
             tvDetailTitle.text = information.title
             tvDetailSummary.text = summary
             tvDetailInstruction.text = instruction
 
-            Glide.with(requireView())
+            Glide.with(requireActivity())
                 .load(information.image)
                 .into(detailImage)
         }
