@@ -13,5 +13,4 @@ interface IRecipesRepository {
 
     fun setFavoriteRecipes(detail: RecipeInformation, state: Boolean)
     fun getFavoriteRecipes(): Flow<List<Recipes>>
-    fun getFavoriteRecipeInformation(id: Int): Flow<RecipeInformation>
 }

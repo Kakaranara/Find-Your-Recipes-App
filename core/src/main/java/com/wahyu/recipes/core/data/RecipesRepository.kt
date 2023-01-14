@@ -76,9 +76,4 @@ class RecipesRepository @Inject constructor(
             DetailMapper.mapEntitiesToRecipes(it)
         }
     }
-
-    override fun getFavoriteRecipeInformation(id: Int): Flow<RecipeInformation> {
-        return localDataSource.getRecipesInformation(id)
-    }
-
 }

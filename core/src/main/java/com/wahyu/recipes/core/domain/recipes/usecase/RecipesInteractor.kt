@@ -21,4 +21,8 @@ class RecipesInteractor @Inject constructor(private val repository: IRecipesRepo
     override fun setFavoriteRecipes(recipes: RecipeInformation, state: Boolean) {
         //
     }
+
+    override fun getFavoriteRecipes(): Flow<List<Recipes>> {
+        return repository.getFavoriteRecipes()
+    }
 }
