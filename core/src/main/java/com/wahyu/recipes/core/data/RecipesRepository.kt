@@ -8,6 +8,7 @@ import com.wahyu.recipes.core.data.remote.response.RecipeInformationApi
 import com.wahyu.recipes.core.domain.recipes.repository.IRecipesRepository
 import com.wahyu.recipes.core.model.RecipeInformation
 import com.wahyu.recipes.core.model.Recipes
+import com.wahyu.recipes.core.util.mapper.DetailMapper
 import com.wahyu.recipes.core.util.mapper.RecipeMapper
 import com.wahyu.recipes.core.util.mapper.toDomain
 import com.wahyu.recipes.core.util.mapper.toEntity
@@ -65,15 +66,19 @@ class RecipesRepository @Inject constructor(
             }
         }.asFlow()
 
-    override fun setFavoriteRecipes(recipes: Recipes, detail: RecipeInformation, state: Boolean) {
-        TODO("Not yet implemented")
+    override fun setFavoriteRecipes(detail: RecipeInformation, state: Boolean) {
+        val entity = detail.toEntity()
+        localDataSource.updateFavoriteStatus(entity, state)
     }
 
-    override fun getFavoriteRecipes(): List<Recipes> {
-        TODO("Not yet implemented")
+    override fun getFavoriteRecipes(): Flow<List<Recipes>> {
+        return localDataSource.getFavoriteRecipes().map {
+            DetailMapper.mapEntitiesToRecipes(it)
+        }
     }
 
-    override fun getFavoriteDetailRecipes(id: Int): RecipeInformation {
-        TODO("Not yet implemented")
+    override fun getFavoriteRecipeInformation(id: Int): Flow<RecipeInformation> {
+        return localDataSource.getRecipesInformation(id)
     }
+
 }

@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.wahyu.recipes.core.data.local.entity.FavoriteEntity
 import com.wahyu.recipes.core.data.local.entity.RecipeInformationEntity
 import com.wahyu.recipes.core.data.local.entity.RecipesEntity
@@ -26,16 +27,23 @@ interface RecipesDao {
 
     //? favorites
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveToFavorite(favoriteEntity: FavoriteEntity)
+    @Query("SELECT * FROM detail WHERE isFavorite = 1")
+    fun getFavoriteRecipe(): Flow<List<RecipeInformationEntity>>
 
-    @Delete
-    suspend fun deleteFavorite(favoriteEntity: FavoriteEntity)
+    @Update
+    fun updateFavoriteStatus(recipe: RecipeInformationEntity)
 
-    @Query("DELETE FROM favorite")
-    suspend fun deleteAllFavorite()
-
-    @Query("SELECT * FROM favorite")
-    fun getFavoriteRecipe(): Flow<List<FavoriteEntity>>
+//
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    suspend fun saveToFavorite(favoriteEntity: FavoriteEntity)
+//
+//    @Delete
+//    suspend fun deleteFavorite(favoriteEntity: FavoriteEntity)
+//
+//    @Query("DELETE FROM favorite")
+//    suspend fun deleteAllFavorite()
+//
+//    @Query("SELECT * FROM favorite")
+//    fun getFavoriteRecipe(): Flow<List<FavoriteEntity>>
 
 }
