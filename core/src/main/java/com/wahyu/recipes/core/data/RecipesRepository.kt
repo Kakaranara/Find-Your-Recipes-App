@@ -46,7 +46,7 @@ class RecipesRepository @Inject constructor(
         object : NetworkBoundResource<RecipeInformation, RecipeInformationApi>() {
             override fun loadFromDb(): Flow<RecipeInformation> {
                 return localDataSource.getRecipesInformation(id).map {
-                    it?.toDomain() ?: RecipeInformation(0, "", 0, "", "", "")
+                    it?.toDomain() ?: RecipeInformation(0, "", 0, "", "", "",false)
                 }
             }
 
@@ -66,7 +66,7 @@ class RecipesRepository @Inject constructor(
             }
         }.asFlow()
 
-    override fun setFavoriteRecipes(detail: RecipeInformation, state: Boolean) {
+    override suspend fun setFavoriteRecipes(detail: RecipeInformation, state: Boolean) {
         val entity = detail.toEntity()
         localDataSource.updateFavoriteStatus(entity, state)
     }

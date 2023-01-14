@@ -11,6 +11,6 @@ interface IRecipesRepository {
 
     //? favorite related
 
-    fun setFavoriteRecipes(detail: RecipeInformation, state: Boolean)
+    suspend fun setFavoriteRecipes(detail: RecipeInformation, state: Boolean)
     fun getFavoriteRecipes(): Flow<List<Recipes>>
 }

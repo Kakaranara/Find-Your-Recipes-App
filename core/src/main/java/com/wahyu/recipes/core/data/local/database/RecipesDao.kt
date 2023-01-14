@@ -31,7 +31,7 @@ interface RecipesDao {
     fun getFavoriteRecipe(): Flow<List<RecipeInformationEntity>>
 
     @Update
-    fun updateFavoriteStatus(recipe: RecipeInformationEntity)
+    suspend fun updateFavoriteStatus(recipe: RecipeInformationEntity)
 
 //
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -31,7 +31,8 @@ fun RecipeInformationEntity.toDomain(): RecipeInformation {
         readyInMinutes = this.readyInMinutes,
         image = this.image,
         summary = this.summary,
-        instruction = this.instruction
+        instruction = this.instruction,
+        isFavorite = this.isFavorite
     )
 }
 

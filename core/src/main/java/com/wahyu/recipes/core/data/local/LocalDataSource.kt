@@ -23,7 +23,7 @@ class LocalDataSource @Inject constructor(
     //? favorite
 
     fun getFavoriteRecipes(): Flow<List<RecipeInformationEntity>> = dao.getFavoriteRecipe()
-    fun updateFavoriteStatus(info: RecipeInformationEntity, state: Boolean) {
+    suspend fun updateFavoriteStatus(info: RecipeInformationEntity, state: Boolean) {
         info.isFavorite = state
         dao.updateFavoriteStatus(info)
     }

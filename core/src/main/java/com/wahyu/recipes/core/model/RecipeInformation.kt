@@ -7,4 +7,5 @@ data class RecipeInformation(
     val image: String,
     val summary: String,
     val instruction: String,
+    val isFavorite: Boolean
 )
