@@ -28,7 +28,7 @@ class RecipesRepository @Inject constructor(
             }
 
             override fun shouldFetch(data: List<Recipes>?): Boolean {
-                return true
+                return data == null || data.isEmpty()
             }
 
             override suspend fun createCall(): Flow<ApiResponse<List<RecipesApi>>> {
@@ -50,7 +50,9 @@ class RecipesRepository @Inject constructor(
             }
 
             override fun shouldFetch(data: RecipeInformation?): Boolean {
-                return true
+                return data == null || data.id == 0
+                // ? data.id == 0 is come from loadFromDb() if it was null. assigning to a new object with id == 0 (if null).
+                // * because i don't wanna make all object nullable so i do so.
             }
 
             override suspend fun createCall(): Flow<ApiResponse<RecipeInformationApi>> {
