@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -31,8 +30,8 @@ class RecipeInformationFragment : Fragment() {
     private val binding get() = _binding!!
     private val args by navArgs<RecipeInformationFragmentArgs>()
     private val viewModel by viewModels<RecipeInformationViewModel>()
-    private var isLiked: Boolean? = null
-    private var data : RecipeInformation? = null
+    private var isFavorite: Boolean = false
+    private lateinit var data: RecipeInformation
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,10 +48,10 @@ class RecipeInformationFragment : Fragment() {
 
         binding.detailToolbar.setupWithNavController(findNavController())
         binding.fabFavorite.setOnClickListener {
-            if (isLiked != null && isLiked == true) {
-                viewModel.setAsUnfavorite(data!!)
+            if (isFavorite) {
+                viewModel.setAsUnfavorite(data)
             } else {
-                viewModel.setAsFavorite(data!!)
+                viewModel.setAsFavorite(data)
             }
         }
 
@@ -60,6 +59,7 @@ class RecipeInformationFragment : Fragment() {
             viewModel.getRecipeInformation(id).collect { information ->
                 when (information) {
                     is Async.Error -> {
+                        Log.e(TAG, "onViewCreated: ${information.data}")
                         binding.content.progressBar2.gone()
                         setupDataIfAvalaible(information.data as RecipeInformation)
                     }
@@ -67,6 +67,7 @@ class RecipeInformationFragment : Fragment() {
                         binding.content.progressBar2.visible()
                     }
                     is Async.Success -> {
+                        Log.e(TAG, "onViewCreated: ${information.data}")
                         binding.content.progressBar2.gone()
                         setupDataIfAvalaible(information.data as RecipeInformation)
                     }
@@ -77,7 +78,7 @@ class RecipeInformationFragment : Fragment() {
 
     private fun setupDataIfAvalaible(information: RecipeInformation) {
         Log.w(TAG, "setupDataIfAvalaible: $information")
-        isLiked = information.isFavorite
+        isFavorite = information.isFavorite
         data = information
 
         val summary = HtmlParser.parseHtml(information.summary)
@@ -96,8 +97,8 @@ class RecipeInformationFragment : Fragment() {
 
     }
 
-    private fun validateFavorite(){
-        if (isLiked != null && isLiked == true) {
+    private fun validateFavorite() {
+        if (isFavorite) {
             binding.fabFavorite.setImageDrawable(
                 ContextCompat.getDrawable(
                     requireActivity(),
