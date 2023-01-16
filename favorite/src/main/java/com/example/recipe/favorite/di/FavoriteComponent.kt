@@ -1,5 +1,6 @@
-package com.example.recipe.favorite
+package com.example.recipe.favorite.di
 
+import com.example.recipe.favorite.ui.FavoriteFragment
 import com.example.recipes.di.FavoriteModuleDependencies
 import dagger.Component
 

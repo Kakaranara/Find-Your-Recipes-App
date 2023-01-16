@@ -1,4 +1,4 @@
-package com.example.recipe.favorite
+package com.example.recipe.favorite.ui
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.example.recipe.favorite
+package com.example.recipe.favorite.di
 
 import com.wahyu.recipes.core.domain.recipes.usecase.IRecipesUseCase
 import com.wahyu.recipes.core.domain.recipes.usecase.RecipesInteractor

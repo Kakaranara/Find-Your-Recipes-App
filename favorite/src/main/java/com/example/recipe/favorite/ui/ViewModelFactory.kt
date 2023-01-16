@@ -1,9 +1,8 @@
-package com.example.recipe.favorite
+package com.example.recipe.favorite.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.wahyu.recipes.core.domain.recipes.usecase.IRecipesUseCase
-import com.wahyu.recipes.core.domain.recipes.usecase.RecipesInteractor
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")

@@ -7,7 +7,7 @@
     <fragment
         app:moduleName="favorite"
         android:id="@+id/favoriteFragment2"
-        android:name="com.example.recipe.favorite.FavoriteFragment"
+        android:name="com.example.recipe.favorite.ui.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" >
         <action

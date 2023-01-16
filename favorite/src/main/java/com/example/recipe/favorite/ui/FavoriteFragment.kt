@@ -1,4 +1,4 @@
-package com.example.recipe.favorite
+package com.example.recipe.favorite.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,11 +13,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.recipe.favorite.databinding.FragmentFavoriteBinding
+import com.example.recipe.favorite.di.DaggerFavoriteComponent
 import com.example.recipes.R
 import com.example.recipes.di.FavoriteModuleDependencies
 import com.wahyu.recipes.core.model.Recipes
 import com.wahyu.recipes.core.ui.RecipeListAdapter
-import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -81,15 +81,6 @@ class FavoriteFragment : Fragment() {
                 mAdapter.submitList(it)
             }
         }
-    }
-
-    private fun configDrawer() {
-        val navController = findNavController()
-        val drawerLayout = requireActivity().findViewById<DrawerLayout>(R.id.drawerLayout)
-        val appConfig = AppBarConfiguration(navController.graph, drawerLayout)
-
-//        binding.favoriteToolbar.setupWithNavController(navController, appConfig)
-        binding.favoriteToolbar.setupWithNavController(findNavController())
     }
 
     override fun onDestroy() {
