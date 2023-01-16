@@ -1,7 +1,6 @@
-package com.example.recipes.ui.favorite
+package com.example.recipe.favorite
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,19 +12,39 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.recipe.favorite.databinding.FragmentFavoriteBinding
 import com.example.recipes.R
-import com.example.recipes.databinding.FragmentFavoriteBinding
-import com.example.recipes.ui.home.HomeFragmentDirections
+import com.example.recipes.di.FavoriteModuleDependencies
 import com.wahyu.recipes.core.model.Recipes
 import com.wahyu.recipes.core.ui.RecipeListAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-@AndroidEntryPoint
 class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModels<FavoriteViewModel>()
+
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    val viewModel by viewModels<FavoriteViewModel> {
+        factory
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        DaggerFavoriteComponent.builder()
+            .appDependencies(
+                EntryPointAccessors.fromApplication(
+                    requireActivity().applicationContext,
+                    FavoriteModuleDependencies::class.java
+                )
+            )
+            .build()
+            .inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +70,7 @@ class FavoriteFragment : Fragment() {
         mAdapter.setClickListener(object : RecipeListAdapter.OnItemClickListener {
             override fun onDetailClick(recipes: Recipes) {
                 val go =
-                    FavoriteFragmentDirections.actionFavoriteFragmentToRecipeInformationFragment(recipes.id)
+                    FavoriteFragmentDirections.actionFavoriteFragment2ToRecipeInformationFragment2(recipes.id)
                 findNavController().navigate(go)
             }
         })
@@ -78,7 +97,7 @@ class FavoriteFragment : Fragment() {
         _binding = null
     }
 
-    companion object{
+    companion object {
         private const val TAG = "FavoriteFragment"
     }
 }

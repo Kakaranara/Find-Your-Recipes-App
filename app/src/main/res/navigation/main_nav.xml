@@ -23,13 +23,8 @@
             android:name="id"
             app:argType="integer" />
     </fragment>
-    <fragment
+    <include-dynamic
         android:id="@+id/favoriteFragment"
-        android:name="com.example.recipes.ui.favorite.FavoriteFragment"
-        android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" >
-        <action
-            android:id="@+id/action_favoriteFragment_to_recipeInformationFragment"
-            app:destination="@id/recipeInformationFragment" />
-    </fragment>
+        app:moduleName="favorite"
+        app:graphResName="fav_navgraph"/>
 </navigation>

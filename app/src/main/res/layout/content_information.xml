@@ -70,14 +70,14 @@
             tools:text="Just a description body" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvTitleInstruction"
             style="@style/TextAppearance.Material3.TitleMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="How to make it"
+            android:text="@string/how_to_make_it"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDetailSummary" />
@@ -93,7 +93,7 @@
             android:layout_marginBottom="200dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleInstruction"
             tools:text="One you should what then i should what too." />
 
         <!--        <Space-->

@@ -60,15 +60,15 @@ class RecipeInformationFragment : Fragment() {
                 when (information) {
                     is Async.Error -> {
                         Log.e(TAG, "onViewCreated: ${information.data}")
-                        binding.content.progressBar2.gone()
+                        showIfAvalaible()
                         setupDataIfAvalaible(information.data as RecipeInformation)
                     }
                     is Async.Loading -> {
-                        binding.content.progressBar2.visible()
+                        hideIfLoading()
                     }
                     is Async.Success -> {
                         Log.e(TAG, "onViewCreated: ${information.data}")
-                        binding.content.progressBar2.gone()
+                        showIfAvalaible()
                         setupDataIfAvalaible(information.data as RecipeInformation)
                     }
                 }
@@ -94,7 +94,6 @@ class RecipeInformationFragment : Fragment() {
                 .into(detailImage)
         }
         validateFavorite()
-
     }
 
     private fun validateFavorite() {
@@ -113,6 +112,18 @@ class RecipeInformationFragment : Fragment() {
                 )
             )
         }
+    }
+
+    private fun showIfAvalaible() {
+        binding.content.progressBar2.gone()
+        binding.content.tvTitleInstruction.visible()
+        binding.fabFavorite.visible()
+    }
+
+    private fun hideIfLoading() {
+        binding.content.tvTitleInstruction.gone()
+        binding.content.progressBar2.visible()
+        binding.fabFavorite.gone()
     }
 
     override fun onDestroyView() {
