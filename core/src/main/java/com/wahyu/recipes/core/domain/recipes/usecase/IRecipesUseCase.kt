@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 interface IRecipesUseCase {
     fun getRecipes(): Flow<Async<List<Recipes>>>
     fun getRecipesInformation(id: Int): Flow<Async<RecipeInformation>>
-    suspend fun setFavoriteRecipes(recipes: RecipeInformation, state: Boolean)
     fun getFavoriteRecipes() : Flow<List<Recipes>>
+    suspend fun setFavoriteRecipes(recipes: RecipeInformation, state: Boolean)
 }

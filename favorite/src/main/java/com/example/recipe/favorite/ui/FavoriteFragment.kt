@@ -1,25 +1,20 @@
 package com.example.recipe.favorite.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.recipe.favorite.databinding.FragmentFavoriteBinding
 import com.example.recipe.favorite.di.DaggerFavoriteComponent
-import com.example.recipes.R
 import com.example.recipes.di.FavoriteModuleDependencies
 import com.wahyu.recipes.core.model.Recipes
 import com.wahyu.recipes.core.ui.RecipeListAdapter
 import dagger.hilt.android.EntryPointAccessors
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FavoriteFragment : Fragment() {
@@ -29,7 +24,7 @@ class FavoriteFragment : Fragment() {
     @Inject
     lateinit var factory: ViewModelFactory
 
-    val viewModel by viewModels<FavoriteViewModel> {
+    private val viewModel by viewModels<FavoriteViewModel> {
         factory
     }
 
@@ -70,16 +65,15 @@ class FavoriteFragment : Fragment() {
         mAdapter.setClickListener(object : RecipeListAdapter.OnItemClickListener {
             override fun onDetailClick(recipes: Recipes) {
                 val go =
-                    FavoriteFragmentDirections.actionFavoriteFragment2ToRecipeInformationFragment2(recipes.id)
+                    FavoriteFragmentDirections.actionFavoriteFragment2ToRecipeInformationFragment2(
+                        recipes.id
+                    )
                 findNavController().navigate(go)
             }
         })
 
-
-        lifecycleScope.launch {
-            viewModel.getRecipes().collect{
-                mAdapter.submitList(it)
-            }
+        viewModel.getRecipes().observe(viewLifecycleOwner) {
+            mAdapter.submitList(it)
         }
     }
 

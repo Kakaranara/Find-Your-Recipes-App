@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
@@ -21,11 +20,10 @@ import com.example.recipes.helper.visible
 import com.wahyu.recipes.core.data.Async
 import com.wahyu.recipes.core.model.RecipeInformation
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class RecipeInformationFragment : Fragment() {
+class RecipeInformationFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentRecipeInformationBinding? = null
     private val binding get() = _binding!!
     private val args by navArgs<RecipeInformationFragmentArgs>()
@@ -47,30 +45,34 @@ class RecipeInformationFragment : Fragment() {
         val id = args.id
 
         binding.detailToolbar.setupWithNavController(findNavController())
-        binding.fabFavorite.setOnClickListener {
-            if (isFavorite) {
-                viewModel.setAsUnfavorite(data)
-            } else {
-                viewModel.setAsFavorite(data)
+        binding.fabFavorite.setOnClickListener(this)
+
+        viewModel.getRecipeInformation(id).observe(viewLifecycleOwner){ information ->
+            when (information) {
+                is Async.Error -> {
+                    Log.e(TAG, "onViewCreated: ${information.data}")
+                    showIfAvalaible()
+                    setupDataIfAvalaible(information.data as RecipeInformation)
+                }
+                is Async.Loading -> {
+                    hideIfLoading()
+                }
+                is Async.Success -> {
+                    Log.e(TAG, "onViewCreated: ${information.data}")
+                    showIfAvalaible()
+                    setupDataIfAvalaible(information.data as RecipeInformation)
+                }
             }
         }
+    }
 
-        lifecycleScope.launch {
-            viewModel.getRecipeInformation(id).collect { information ->
-                when (information) {
-                    is Async.Error -> {
-                        Log.e(TAG, "onViewCreated: ${information.data}")
-                        showIfAvalaible()
-                        setupDataIfAvalaible(information.data as RecipeInformation)
-                    }
-                    is Async.Loading -> {
-                        hideIfLoading()
-                    }
-                    is Async.Success -> {
-                        Log.e(TAG, "onViewCreated: ${information.data}")
-                        showIfAvalaible()
-                        setupDataIfAvalaible(information.data as RecipeInformation)
-                    }
+    override fun onClick(v: View) {
+        when(v){
+            binding.fabFavorite -> {
+                if (isFavorite) {
+                    viewModel.setAsUnfavorite(data)
+                } else {
+                    viewModel.setAsFavorite(data)
                 }
             }
         }

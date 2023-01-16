@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -21,7 +20,6 @@ import com.wahyu.recipes.core.data.Async
 import com.wahyu.recipes.core.model.Recipes
 import com.wahyu.recipes.core.ui.RecipeListAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -54,27 +52,24 @@ class HomeFragment : Fragment() {
             }
         })
 
-        lifecycleScope.launch {
-
-            viewModel.useCase.getRecipes().collect {
-                when (it) {
-                    is Async.Error -> {
-                        binding.progressBar.gone()
-                        mAdapter.submitList(it.data)
-                        Log.w(TAG, "onViewCreated: offline data : ${it.data}")
-                    }
-                    is Async.Loading -> {
-                        binding.progressBar.visible()
-                    }
-                    is Async.Success -> {
-                        binding.progressBar.gone()
-                        mAdapter.submitList(it.data)
-                    }
+        viewModel.getRecipeList().observe(viewLifecycleOwner){
+            when (it) {
+                is Async.Error -> {
+                    binding.progressBar.gone()
+                    mAdapter.submitList(it.data)
+                    Log.w(TAG, "onViewCreated: offline data : ${it.data}")
+                }
+                is Async.Loading -> {
+                    binding.progressBar.visible()
+                }
+                is Async.Success -> {
+                    binding.progressBar.gone()
+                    mAdapter.submitList(it.data)
                 }
             }
         }
-    }
 
+    }
 
     private fun configDrawer() {
         val navController = findNavController()
