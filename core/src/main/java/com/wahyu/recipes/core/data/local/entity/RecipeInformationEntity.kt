@@ -12,4 +12,5 @@ data class RecipeInformationEntity(
     val image: String,
     val summary: String,
     val instruction: String,
+    var isFavorite: Boolean = false
 )
