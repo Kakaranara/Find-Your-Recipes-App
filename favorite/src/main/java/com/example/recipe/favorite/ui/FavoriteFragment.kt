@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.recipe.favorite.databinding.FragmentFavoriteBinding
 import com.example.recipe.favorite.di.DaggerFavoriteComponent
 import com.example.recipes.di.FavoriteModuleDependencies
+import com.example.recipes.helper.visible
 import com.wahyu.recipes.core.model.Recipes
 import com.wahyu.recipes.core.ui.RecipeListAdapter
 import dagger.hilt.android.EntryPointAccessors
@@ -73,6 +74,9 @@ class FavoriteFragment : Fragment() {
         })
 
         viewModel.getRecipes().observe(viewLifecycleOwner) {
+            if (it.isEmpty()) {
+                binding.viewEmpty.root.visible()
+            }
             mAdapter.submitList(it)
         }
     }
@@ -80,9 +84,5 @@ class FavoriteFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    companion object {
-        private const val TAG = "FavoriteFragment"
     }
 }

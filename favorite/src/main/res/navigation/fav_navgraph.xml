@@ -5,11 +5,11 @@
     app:startDestination="@id/favoriteFragment2">
 
     <fragment
-        app:moduleName="favorite"
         android:id="@+id/favoriteFragment2"
         android:name="com.example.recipe.favorite.ui.FavoriteFragment"
-        android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" >
+        android:label="Favorite"
+        app:moduleName="favorite"
+        tools:layout="@layout/fragment_favorite">
         <action
             android:id="@+id/action_favoriteFragment2_to_recipeInformationFragment2"
             app:destination="@id/recipeInformationFragment2" />
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/recipeInformationFragment2"
         android:name="com.example.recipes.ui.detail.RecipeInformationFragment"
-        android:label="RecipeInformationFragment" >
+        android:label="RecipeInformationFragment">
         <argument
             android:name="id"
             app:argType="integer" />

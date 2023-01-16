@@ -47,7 +47,7 @@ class RecipeInformationFragment : Fragment(), View.OnClickListener {
         binding.detailToolbar.setupWithNavController(findNavController())
         binding.fabFavorite.setOnClickListener(this)
 
-        viewModel.getRecipeInformation(id).observe(viewLifecycleOwner){ information ->
+        viewModel.getRecipeInformation(id).observe(viewLifecycleOwner) { information ->
             when (information) {
                 is Async.Error -> {
                     Log.e(TAG, "onViewCreated: ${information.data}")
@@ -67,7 +67,7 @@ class RecipeInformationFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        when(v){
+        when (v) {
             binding.fabFavorite -> {
                 if (isFavorite) {
                     viewModel.setAsUnfavorite(data)
@@ -82,6 +82,12 @@ class RecipeInformationFragment : Fragment(), View.OnClickListener {
         Log.w(TAG, "setupDataIfAvalaible: $information")
         isFavorite = information.isFavorite
         data = information
+
+        if (information.id == 0) {
+            binding.detailErrorLayout.root.visible()
+            binding.content.tvTitleInstruction.text = ""
+            binding.fabFavorite.gone()
+        }
 
         val summary = HtmlParser.parseHtml(information.summary)
         val instruction = HtmlParser.parseHtml(information.instruction)
