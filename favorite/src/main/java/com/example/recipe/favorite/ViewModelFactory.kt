@@ -6,7 +6,8 @@ import com.wahyu.recipes.core.domain.recipes.usecase.IRecipesUseCase
 import com.wahyu.recipes.core.domain.recipes.usecase.RecipesInteractor
 import javax.inject.Inject
 
-class ViewModelFactory @Inject constructor(private val useCase: RecipesInteractor) :
+@Suppress("UNCHECKED_CAST")
+class ViewModelFactory @Inject constructor(private val useCase: IRecipesUseCase) :
     ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(FavoriteViewModel::class.java)){
