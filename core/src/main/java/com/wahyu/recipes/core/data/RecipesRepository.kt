@@ -8,6 +8,7 @@ import com.wahyu.recipes.core.data.remote.response.RecipeInformationApi
 import com.wahyu.recipes.core.domain.recipes.repository.IRecipesRepository
 import com.wahyu.recipes.core.model.RecipeInformation
 import com.wahyu.recipes.core.model.Recipes
+import com.wahyu.recipes.core.util.mapper.DetailMapper
 import com.wahyu.recipes.core.util.mapper.RecipeMapper
 import com.wahyu.recipes.core.util.mapper.toDomain
 import com.wahyu.recipes.core.util.mapper.toEntity
@@ -28,7 +29,7 @@ class RecipesRepository @Inject constructor(
             }
 
             override fun shouldFetch(data: List<Recipes>?): Boolean {
-                return true
+                return data == null || data.isEmpty()
             }
 
             override suspend fun createCall(): Flow<ApiResponse<List<RecipesApi>>> {
@@ -45,12 +46,14 @@ class RecipesRepository @Inject constructor(
         object : NetworkBoundResource<RecipeInformation, RecipeInformationApi>() {
             override fun loadFromDb(): Flow<RecipeInformation> {
                 return localDataSource.getRecipesInformation(id).map {
-                    it?.toDomain() ?: RecipeInformation(0, "", 0, "", "", "")
+                    it?.toDomain() ?: RecipeInformation(0, "", 0, "", "", "",false)
                 }
             }
 
             override fun shouldFetch(data: RecipeInformation?): Boolean {
-                return true
+                return data == null || data.id == 0
+                // ? data.id == 0 is come from loadFromDb() if it was null. assigning to a new object with id == 0 (if null).
+                // * because i don't wanna make all object nullable so i do so.
             }
 
             override suspend fun createCall(): Flow<ApiResponse<RecipeInformationApi>> {
@@ -63,15 +66,14 @@ class RecipesRepository @Inject constructor(
             }
         }.asFlow()
 
-    override fun setFavoriteRecipes(recipes: Recipes, detail: RecipeInformation, state: Boolean) {
-        TODO("Not yet implemented")
+    override suspend fun setFavoriteRecipes(detail: RecipeInformation, state: Boolean) {
+        val entity = detail.toEntity()
+        localDataSource.updateFavoriteStatus(entity, state)
     }
 
-    override fun getFavoriteRecipes(): List<Recipes> {
-        TODO("Not yet implemented")
-    }
-
-    override fun getFavoriteDetailRecipes(id: Int): RecipeInformation {
-        TODO("Not yet implemented")
+    override fun getFavoriteRecipes(): Flow<List<Recipes>> {
+        return localDataSource.getFavoriteRecipes().map {
+            DetailMapper.mapEntitiesToRecipes(it)
+        }
     }
 }

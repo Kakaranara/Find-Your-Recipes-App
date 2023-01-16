@@ -10,8 +10,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
         val db = loadFromDb().first()
         if (shouldFetch(db)) {
             emit(Async.Loading())
-            val client = createCall().first()
-            when (client) {
+            when (val client = createCall().first()) {
                 is ApiResponse.Success -> {
                     saveCallResult(client.data)
                     emitAll(loadFromDb().map { Async.Success(it) })

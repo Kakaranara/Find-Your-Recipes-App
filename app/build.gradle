@@ -38,15 +38,18 @@ android {
     buildFeatures {
         viewBinding true
     }
+    dynamicFeatures = [':favorite']
 }
 
 dependencies {
 
-    implementation project(":core")
+    api project(":core")
 
     //? safeArgs
-    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
-    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+    api "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    api "androidx.navigation:navigation-ui-ktx:2.5.3"
+    api "androidx.navigation:navigation-dynamic-features-fragment:2.5.3"
+
 
     //? ui
     implementation "androidx.drawerlayout:drawerlayout:1.1.1"

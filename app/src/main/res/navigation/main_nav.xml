@@ -23,4 +23,8 @@
             android:name="id"
             app:argType="integer" />
     </fragment>
+    <include-dynamic
+        android:id="@+id/favoriteFragment"
+        app:moduleName="favorite"
+        app:graphResName="fav_navgraph"/>
 </navigation>

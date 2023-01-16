@@ -5,11 +5,11 @@
         android:title="@string/menu">
         <menu>
             <item
-                android:id="@+id/action_home"
+                android:id="@+id/homeFragment"
                 android:icon="@drawable/ic_baseline_home_24"
                 android:title="@string/home" />
             <item
-                android:id="@+id/action_favorite"
+                android:id="@+id/favoriteFragment"
                 android:icon="@drawable/ic_baseline_favorite_border_24"
                 android:title="@string/favorite" />
         </menu>
