@@ -11,4 +11,5 @@
     <string name="favorite_button">Favorite Button</string>
     <string name="title_favorite">Favorite</string>
     <string name="how_to_make_it">How to make it</string>
+    <string name="something_error">Something Error.</string>
 </resources>
