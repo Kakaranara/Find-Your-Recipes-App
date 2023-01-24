@@ -2,11 +2,10 @@ package com.wahyu.recipes.core.data.remote
 
 import android.util.Log
 import com.wahyu.recipes.core.data.remote.network.ApiResponse
-import com.wahyu.recipes.core.data.remote.response.SearchRecipeApi
 import com.wahyu.recipes.core.data.remote.network.ApiService
 import com.wahyu.recipes.core.data.remote.response.RecipeInformationApi
 import com.wahyu.recipes.core.data.remote.response.RecipesApi
-import kotlinx.coroutines.CancellationException
+import com.wahyu.recipes.core.data.remote.response.SearchRecipeApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

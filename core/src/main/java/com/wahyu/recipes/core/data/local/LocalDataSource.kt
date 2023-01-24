@@ -1,10 +1,8 @@
 package com.wahyu.recipes.core.data.local
 
 import com.wahyu.recipes.core.data.local.database.RecipesDao
-import com.wahyu.recipes.core.data.local.entity.FavoriteEntity
 import com.wahyu.recipes.core.data.local.entity.RecipeInformationEntity
 import com.wahyu.recipes.core.data.local.entity.RecipesEntity
-import com.wahyu.recipes.core.model.RecipeInformation
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
