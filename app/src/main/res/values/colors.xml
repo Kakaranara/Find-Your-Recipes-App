@@ -1,6 +1,6 @@
 
-<resources>
-    <color name="seed">#DAE2B6</color>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="seed" tools:ignore="UnusedResources">#DAE2B6</color>
     <color name="md_theme_light_primary">#536600</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
     <color name="md_theme_light_primaryContainer">#D5ED7E</color>
@@ -27,10 +27,10 @@
     <color name="md_theme_light_inverseOnSurface">#F5F77E</color>
     <color name="md_theme_light_inverseSurface">#313300</color>
     <color name="md_theme_light_inversePrimary">#B9D165</color>
-    <color name="md_theme_light_shadow">#000000</color>
-    <color name="md_theme_light_surfaceTint">#536600</color>
-    <color name="md_theme_light_outlineVariant">#C7C8B8</color>
-    <color name="md_theme_light_scrim">#000000</color>
+    <color name="md_theme_light_shadow" tools:ignore="UnusedResources">#000000</color>
+    <color name="md_theme_light_surfaceTint" tools:ignore="UnusedResources">#536600</color>
+    <color name="md_theme_light_outlineVariant" tools:ignore="UnusedResources">#C7C8B8</color>
+    <color name="md_theme_light_scrim" tools:ignore="UnusedResources">#000000</color>
     <color name="md_theme_dark_primary">#B9D165</color>
     <color name="md_theme_dark_onPrimary">#2A3500</color>
     <color name="md_theme_dark_primaryContainer">#3E4C00</color>
@@ -57,11 +57,11 @@
     <color name="md_theme_dark_inverseOnSurface">#1C1D00</color>
     <color name="md_theme_dark_inverseSurface">#E6E971</color>
     <color name="md_theme_dark_inversePrimary">#536600</color>
-    <color name="md_theme_dark_shadow">#000000</color>
-    <color name="md_theme_dark_surfaceTint">#B9D165</color>
-    <color name="md_theme_dark_outlineVariant">#46483C</color>
-    <color name="md_theme_dark_scrim">#000000</color>
-    <color name="CustomColor1">#546A0D</color>
+    <color name="md_theme_dark_shadow" tools:ignore="UnusedResources">#000000</color>
+    <color name="md_theme_dark_surfaceTint" tools:ignore="UnusedResources">#B9D165</color>
+    <color name="md_theme_dark_outlineVariant" tools:ignore="UnusedResources">#46483C</color>
+    <color name="md_theme_dark_scrim" tools:ignore="UnusedResources">#000000</color>
+    <color name="CustomColor1" tools:ignore="UnusedResources">#546A0D</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 </resources>

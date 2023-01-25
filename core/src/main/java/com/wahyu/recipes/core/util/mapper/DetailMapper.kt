@@ -55,10 +55,3 @@ fun RecipeInformation.toEntity(): RecipeInformationEntity {
     )
 }
 
-fun RecipeInformation.toRecipes(): Recipes {
-    return Recipes(
-        id = this.id,
-        image = this.image,
-        title = this.title
-    )
-}

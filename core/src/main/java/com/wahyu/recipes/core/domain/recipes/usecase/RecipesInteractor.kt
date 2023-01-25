@@ -6,7 +6,6 @@ import com.wahyu.recipes.core.model.RecipeInformation
 import com.wahyu.recipes.core.model.Recipes
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class RecipesInteractor @Inject constructor(private val repository: IRecipesRepository) :
     IRecipesUseCase {

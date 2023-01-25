@@ -6,7 +6,6 @@ import com.wahyu.recipes.core.model.Recipes
 
 object RecipeMapper {
     fun mapEntityToDomain(from: List<RecipesEntity>): List<Recipes> = from.map { it.toDomain() }
-    fun mapDomainToEntity(from: List<Recipes>): List<RecipesEntity> = from.map { it.toEntity() }
     fun mapApiToEntity(from: List<RecipesApi>): List<RecipesEntity> = from.map { it.toEntity() }
 }
 
