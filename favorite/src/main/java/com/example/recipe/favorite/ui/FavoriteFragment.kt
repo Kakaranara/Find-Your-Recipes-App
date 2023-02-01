@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -65,11 +67,16 @@ class FavoriteFragment : Fragment() {
 
         mAdapter.setClickListener(object : RecipeListAdapter.OnItemClickListener {
             override fun onDetailClick(recipes: Recipes) {
-                val go =
-                    FavoriteFragmentDirections.actionFavoriteFragment2ToRecipeInformationFragment2(
-                        recipes.id
-                    )
-                findNavController().navigate(go)
+                val uri = "android-app://com.wahyu.recipes/info/${recipes.id}".toUri()
+                val request = NavDeepLinkRequest.Builder
+                    .fromUri(uri)
+                    .build()
+                findNavController().navigate(request)
+//                val go =
+//                    FavoriteFragmentDirections.actionFavoriteFragment2ToRecipeInformationFragment2(
+//                        recipes.id
+//                    )
+//                findNavController().navigate(go)
             }
         })
 
