@@ -72,11 +72,6 @@ class FavoriteFragment : Fragment() {
                     .fromUri(uri)
                     .build()
                 findNavController().navigate(request)
-//                val go =
-//                    FavoriteFragmentDirections.actionFavoriteFragment2ToRecipeInformationFragment2(
-//                        recipes.id
-//                    )
-//                findNavController().navigate(go)
             }
         })
 
